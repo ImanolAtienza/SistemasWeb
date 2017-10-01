@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tarea 2</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script>
+            $(function(){
+                $("#comprobar").click(function () {
+                    var res;
+                    var n1 = parseInt($("#num1").val());
+                    var n2 = parseInt($("#num2").val());
+                    var comp = parseInt($("#respuesta").val());
+    
+                    switch($("#listop").val()) {
+                        case "1":
+                            res = n1 + n2;
+                            break;
+                        case "2":
+                            res = n1 - n2;
+                            break;
+                        case "3":
+                            res = n1 / n2;
+                            break;
+                        case "4":
+                            res = n1 * n2;
+                            break;
+                    }
+                        
+                    if(res === comp)
+                        alert("Correcto");
+                    else
+                        alert("Incorrecto");
+                });
+            });
+    </script>
+    </head>
+    <body>
+        <h1>Tarea 2 - Calcular</h1>
+        <form>
+            Añadir dos números:<br>
+            <input type="text" id="num1" size="5" />
+            <input type="text" id="num2" size="5" />
+            <br><br>
+            Operador:
+            <select id="listop">
+                <option value="1" selected>+</option>
+                <option value="2">-</option>
+                <option value="3">/</option>
+                <option value="4">*</option>
+            </select>
+            <br><br>
+            ¿Tú respuesta?<br>
+            <input type="text" id="respuesta" size="9" />
+            <br><br>
+            <input type="submit" id="comprobar" value="Enviar" />
+            <input type="reset" value="Borrar" />
+        </form>
+    </body>
+</html>
+

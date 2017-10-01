@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tarea1</title>
+    </head>
+    <body>
+        <h1>Tarea 1 - Calcular</h1>
+        <form>
+            Añadir dos números:<br>
+            <input type="text" id="num1" size="5" />
+            <input type="text" id="num2" size="5" />
+            <br><br>
+            Operador:
+            <select id="listop">
+                <option value="1" selected>+</option>
+                <option value="2">-</option>
+                <option value="3">/</option>
+                <option value="4">*</option>
+            </select>
+            <br><br>
+            ¿Tú respuesta?<br>
+            <input type="text" onchange="validar()" id="respuesta" size="9" />
+            <br><br>
+            <input type="reset" value="Borrar" />
+        </form>
+    </body>
+    <script>
+        function validar() {
+            var res;
+            var n1 = parseInt(document.getElementById("num1").value);
+            var n2 = parseInt(document.getElementById("num2").value);
+            var comp = parseInt(document.getElementById("respuesta").value);
+                
+            switch(document.getElementById("listop").value) {
+                case "1":
+                    res = n1 + n2;
+                    break;
+                case "2":
+                    res = n1 - n2;
+                    break;
+                case "3":
+                    res = n1 / n2;
+                    break;
+                case "4":
+                    res = n1 * n2;
+                    break;
+            }
+                
+            if(res === comp)
+                alert("Correcto");
+            else
+                alert("Incorrecto");
+        }
+    </script>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Tarea1</title>
+        <script src="math.js"></script>
+        <script>
+	        function validar() {
+	            var res, n1, n2, pos;
+	            var dato = document.getElementById("num1").value;
+	            var comp = parseInt(document.getElementById("respuesta").value);
+	 
+				/*if(dato.indexOf("+") > 0) {
+					pos = dato.indexOf("+");
+					n1 = parseInt(dato.substring(0, pos));
+					n2 = parseInt(dato.substring(pos+1, dato.length));
+					res = math.add(n1, n2);
+				} else if(dato.indexOf("-") > 0) {
+					pos = dato.indexOf("-");
+					n1 = parseInt(dato.substring(0, pos));
+					n2 = parseInt(dato.substring(pos+1, dato.length));
+					res = math.subtract(n1, n2);
+				} else if(dato.indexOf("*") > 0) {
+					pos = dato.indexOf("*");
+					n1 = parseInt(dato.substring(0, pos));
+					n2 = parseInt(dato.substring(pos+1, dato.length));
+					res = math.multiply(n1, n2);
+				} else if(dato.indexOf("/") > 0) {
+					pos = dato.indexOf("/");
+					n1 = parseInt(dato.substring(0, pos));
+					n2 = parseInt(dato.substring(pos+1, dato.length));
+					res = math.divide(n1, n2);
+				} else
+					alert("Hay que introducir un operador (+,-,*,/)");*/
+				res = math.eval(dato);
+				alert(res);
+
+				if(res === comp)
+                	alert("Correcto");
+            	else
+                	alert("Incorrecto");
+	        }
+    	</script>
+    </head>
+    <body>
+        <h1>Tarea 3 - Calcular</h1>
+        <form>
+            Añadir la operación a realizar:<br>
+            <input type="text" id="num1" size="20" />
+            <br><br>
+            ¿Tú respuesta?<br>
+            <input type="text" onchange="validar()" id="respuesta" size="9" />
+            <br><br>
+            <input type="reset" value="Borrar" />
+        </form>
+    </body>
+
+</html>
