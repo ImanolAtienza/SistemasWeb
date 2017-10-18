@@ -32,16 +32,15 @@
     
 	<div>
 		<form id="fpreguntas" name="fpreguntas" action="prueba.php" method="post" enctype='multipart/form-data'>
-			Dirección de correo electronico*: <input type="text" id="txCor" name="correo" /><br>
-			Enunciado de la pregunta*: <input type="text" id="txEnu" name="enunciado" /><br>
+			Dirección de correo electronico*: <input type="text" id="txCor" name="correo" pattern="(^[a-z]+)([0-9]{3})\@ikasle\.ehu\.(es|eus)"  placeholder="car+apellido@ikasle.ehu.(es|eus)" title="Error en el correo: *" required /><br>
+			Enunciado de la pregunta*: <input type="text" id="txEnu" name="enunciado" required /><br>
 			Respuesta correcta*: <input type="text" id="txOk" name="Ok" /><br>
-			Primera respuesta incorrecta*: <input type="text" id="txMal1" name="mal1"/><br>
-			Segunda respuesta incorrecta*: <input type="text" id="txMal2" name="mal2" /><br>
-			Tercera respuesta incorrecta*: <input type="text" id="txMal3" name="mal3" /><br>
-			Complejidad de la pregunta (1-5)*: <input type="number" id="nuComp" name="complejidad" /><br>
-			Tema de la pregunta*: <input type="text" id="txTem" name="tema" /><br>
+			Primera respuesta incorrecta*: <input type="text" id="txMal1" name="mal1" required/><br>
+			Segunda respuesta incorrecta*: <input type="text" id="txMal2" name="mal2" required /><br>
+			Tercera respuesta incorrecta*: <input type="text" id="txMal3" name="mal3" required /><br>
+			Complejidad de la pregunta (1-5)*: <input type="number" id="nuComp" name="complejidad" min="1" max="5" required /><br>
+			Tema de la pregunta*: <input type="text" id="txTem" name="tema" required /><br>
 			Imagen relacionada con la pregunta: <input type="file" id="imPre" name="imagen" accept=".png, .jpg, .jpeg"><br>
-			<br>
 			<input type="submit" id="btEnviar" value="Enviar"><br>
 		</form>
 	</div>
