@@ -38,7 +38,6 @@
 			if(imagen.length <= 0) {
 				imagen = $('<img id="imEjem" align="center" width="20%" height="20%" />');
 				$("#imPre").after(imagen);
-				alert("pedro");
 			}
 
 			$("#imEjem").attr("src", URL.createObjectURL(event.target.files[0]));
