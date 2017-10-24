@@ -1,7 +1,7 @@
 <?php
 	include "configurar.php";
 
-	$sql = "INSERT INTO Preguntas (correo, enunciado, resCorrecta, resMal1, resMal2, resMal3, complejidad, tema) VALUES ('".$_POST["correo"]."','".$_POST["enunciado"]."','".$_POST["Ok"]."','".$_POST["mal1"]."', '".$_POST["mal2"]."','".$_POST["mal3"]."','".$_POST["complejidad"]."','".$_POST["tema"]."')";
+	$sql = "INSERT INTO preguntas (correo, enunciado, resCorrecta, resMal1, resMal2, resMal3, complejidad, tema) VALUES ('".$_POST["correo"]."', '".$_POST["enunciado"]."', '".$_POST["Ok"]."', '".$_POST["mal1"]."', '".$_POST["mal2"]."', '".$_POST["mal3"]."', '".$_POST["complejidad"]."', '".$_POST["tema"]."')";
 
 	if(!($bdPreguntas = mysqli_connect($host, $user, $pass, $bd))) 
 		 die("Fallo al conectar a MySQL: " . $bdPreguntas->connect_error);
