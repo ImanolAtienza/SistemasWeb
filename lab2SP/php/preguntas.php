@@ -32,7 +32,7 @@
 	<div>
 		<?php if(isset($_GET['email'])){
 			$value=$_GET['email'];			
-    		$disabled = "readonly";
+    	$disabled = "readonly";
 		}?>
 		<form id="fpreguntas" name="fpreguntas" action="InsertarPreguntaConFoto.php?email=<?php echo($_GET['email']);?>" method="post" enctype='multipart/form-data'>
 			Dirección de correo electronico*: <input type="text" id="txCor" name="correo" readonly="<?php echo($disabled);?>" 
