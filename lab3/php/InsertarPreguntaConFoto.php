@@ -2,17 +2,17 @@
 	include "configurar.php";
 	
 	function xml($em,$en,$c,$i1,$i2,$i3,$com,$te){
-		if($xml = simplexml_load_file('../xml/preguntas.xml')) {
-			echo "<p>Error: se han guardado los datos en el fichero XML. Pulsa el boton para ver las preguntas generadas.</p>";
-			echo '<a href="VerPreguntasXML.php?email="'.$_GET['email'].'">Ver preguntas en XML</a>';
-			
-			return false;
-		}
+        $xml = simplexml_load_file('../xml/preguntas.xml');
+        if(!isset($xml)) {
+            echo "<p>Error: no se han guardado los datos en el fichero XML. Pulsa el boton para ver las preguntas generadas.</p>";
+            echo '<a href="VerPreguntasXML.php?email="'.$_GET['email'].'">Ver preguntas en XML</a>';
+
+            return false;
+        }
         $pelicula = $xml->addChild('assessmentItem');
         $pelicula->addAttribute('complexity', $com);
         $pelicula->addAttribute('subject', $te);
         $pelicula->addAttribute('author',$em);
-        
         
         $pelicula->addChild('itemBody')->addChild('p', $en);
         
@@ -22,12 +22,10 @@
         $preg_incorrectas->addChild('value', $i2);
         $preg_incorrectas->addChild('value', $i3);
 
-		$xml->asXML('preguntas.xml');
-		
+		$xml->asXML('../xml/preguntas.xml');
 		return true;
-    }
-	
 
+    }
 
 	if(!($bdPreguntas = mysqli_connect($host, $user, $pass, $bd))) 
 		 die("Fallo al conectar a MySQL: " . $bdPreguntas->connect_error);
@@ -55,15 +53,15 @@
 		VALUES ('".$email."','".$enunciado."','".$correcta."','".$inco1."',
 	    '".$inco2."','".$inco3."','".$comp."','".$tema."','".$foto."')";
 
-	    if(!mysqli_query($bdPreguntas, $sql) && xml($email, $enunciado, $correcta, $inco1, $inco2, $inco3, $comp, $tema, $foto)) {
-			echo "<p>Error: $sql</p><br><p>$bdPreguntas->error</p>";
-			echo '<a href="javascript:window.history.back();">Volver</a>';
+	    if(mysqli_query($bdPreguntas, $sql) && xml($email, $enunciado, $correcta, $inco1, $inco2, $inco3, $comp, $tema)){
+            echo "<p>Correcto: se han guardado los datos en la base de datos. Pulsa el boton para ver las preguntas generadas.</p>";
+            echo '<a href="VerPreguntasConFoto.php?email="'.$_GET['email'].'">Ver preguntas</a>';
+
+            echo "<p>Correcto: se han guardado los datos en el fichero XML. Pulsa el boton para ver las preguntas generadas.</p>";
+            echo '<a href="VerPreguntasXML.php?email="'.$_GET['email'].'">Ver preguntas en XML</a>';
 		} else {
-			echo "<p>Correcto: se han guardado los datos en la base de datos. Pulsa el boton para ver las preguntas generadas.</p>";
-			echo '<a href="VerPreguntasConFoto.php?email="'.$_GET['email'].'">Ver preguntas</a>';
-			
-			echo "<p>Correcto: se han guardado los datos en el fichero XML. Pulsa el boton para ver las preguntas generadas.</p>";
-			echo '<a href="VerPreguntasXML.php?email="'.$_GET['email'].'">Ver preguntas en XML</a>';
+            echo "<p>Error: $sql->conn</p><br><p>$bdPreguntas->error</p>";
+            echo '<a href="javascript:window.history.back();">Volver</a>';
 		}
 	} else {
 		echo "<p>Error: Alguno de los campos no cumple la validacion.</p>";

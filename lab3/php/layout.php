@@ -21,9 +21,9 @@
 		<h2>Quiz: el juego de las preguntas</h2>
     </header>
 	<nav class='main' id='n1' role='navigation'>
-		<span><a href='layout.php?email=<?php echo $_GET['email']?>'>Inicio</a></spam>
-		<span><a href='preguntas.php?email=<?php echo $_GET['email']?>'>Preguntas</a></spam>
-		<span><a href='creditos.php?email=<?php echo $_GET['email']?>'>Creditos</a></spam>
+		<span><a href='layout.php?email=<?php echo $_GET['email']?>'>Inicio</a></span>
+		<span><a href='preguntas.php?email=<?php echo $_GET['email']?>'>Preguntas</a></span>
+		<span><a href='creditos.php?email=<?php echo $_GET['email']?>'>Creditos</a></span>
 	</nav>
     <section class="main" id="s1">
     
