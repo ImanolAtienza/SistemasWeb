@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<HTML>
+    <head>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                
+                $.get('../xml/usuarios.xml', function(d){
+                    var listacorreos = $(d).find('email');
+                    for (var i = 0; i < listacorreos.length; i++){
+                        $('#lista').append($('<option>',{
+                            value: listacorreos[i].childNodes[0].nodeValue,
+                            text: listacorreos[i].childNodes[0].nodeValue
+                        }));
+                    }
+                });
+                $("#lista").change(function(s) {
+                    var email=$(this).val();
+                    
+                    $.ajax({
+                        type: "GET",
+                        dataType: "xml",
+                        url: "../xml/usuarios.xml",
+                        success: function(result){
+                            $(result).find('usuario').each(function () {
+                                if ($(this).find('email').text() == email){
+                                    var sNombre = $(this).find('nombre').text();
+                                    var sApe1 = $(this).find('apellido1').text();
+                                    var sApe2 = $(this).find('apellido2').text();
+                                    var sTlf = $(this).find('telefono').text();
+                                    $('#datos').html("</br>");
+                                    $('#datos').append(
+                                        $('<li>').append($('<span>').append("Nombre: "+sNombre)),
+                                        $('<li>').append($('<span>').append("Apellidos: "+sApe1).append(" "+sApe2)),
+                                        $('<li>').append($('<span>').append("Telefono: "+sTlf))
+                                            );
+                                }
+                                
+                            });
+                            
+                        }
+                    });
+                    //$('#datos').html(sNombre);
+                    
+                });
+            
+            });
+
+        </script>
+    </head>
+    <body>
+        <h1>Lista de correos obtenida de un fichero xml ...</h1>
+        <h2>Lista Correos electronicos</h2><br>
+        <SELECT NAME="lista" id="lista" ></SELECT>
+        
+        <div id="datos">ssss</div>
+    </body>
+</HTML>
